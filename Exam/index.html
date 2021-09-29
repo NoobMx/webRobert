@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="chart.js.txt"></script>
+    <title>Document</title>
+    <style>
+        .tabla{
+            width: 100%;
+            height: auto;
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        .tabla td{            
+            border-bottom: cadetblue solid 1px;
+        }
+        .tabla th{
+            color: rgb(47, 3, 243);
+        }
+    </style>
+</head>
+
+<body>
+    
+    <!-- Tabla de productos-->
+    <table class="tabla" style="margin-top: 5%;">
+        <tr>
+            <th>#id</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th> 
+            <th>Acción</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Coca Cola</td>
+            <td>10</td>
+            <td><input type="number" name="" id="txt" class="valores"> </td> 
+            <td><button producto-id="1" nombre="Coca Cola" precio="10"   onclick="agregarProducto(this)">Agregar</button></td>            
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Pepsi</td>
+            <td>5</td>
+            <td><input type="number" name="" id="txt1" class="valores"> </td>
+            <td><button producto-id="2" nombre="Pepsi" precio="5"  onclick="agregarProducto(this)">Agregar</button></td>            
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Otro</td>
+            <td>2</td>
+            <td ><input type="number" name="" id="txt2" class="valores"> </td>
+            <td><button producto-id="3" nombre="Otro" precio="2"  onclick="agregarProducto(this)">Agregar</button></td>            
+        </tr>
+    </table>
+    
+    <!-- /Tabla de productos-->
+
+    <!-- Tabla de Carrito-->
+    <table class="tabla" style="margin-top: 10%;">
+        <thead>
+            <tr>
+                <th>#id</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <!-- <th>Cantidad</th> -->
+                <th>Tot.Cant</th>
+            </tr>
+        </thead>
+        <tbody id="carrito">
+
+        </tbody>
+        
+    </table>
+    <!-- /Tabla de Carrito-->
+    
+      
+
+    
+</body>
+<script>
+var valores=new Array();
+console.log(valores);
+function agregarProducto(producto){
+    var nombre = producto.getAttribute('nombre');
+    var precio = producto.getAttribute('precio');
+    var cantidad = document.getElementById('txt').value;
+    valores.push(cantidad);
+    var cantidad1 = document.getElementById('txt1').value;
+    valores.push(cantidad1);
+    var cantidad2 = document.getElementById('txt2').value;
+    valores.push(cantidad2);
+    var id = producto.getAttribute('producto-id');
+
+    
+    if (producto.getAttribute('producto-id')==1) {
+        document.getElementById('carrito').innerHTML += '<tr><td>'+id+'</td><td>'+nombre+'</td><td>'+precio+'</td><td>'+cantidad+'</td></tr>';           
+    }
+    else if (producto.getAttribute('producto-id')==2) {
+        document.getElementById('carrito').innerHTML += '<tr><td>'+id+'</td><td>'+nombre+'</td><td>'+precio+'</td><td>'+cantidad1+'</td></tr>';           
+
+    }
+    else if (producto.getAttribute('producto-id')==3) {
+        document.getElementById('carrito').innerHTML += '<tr><td>'+id+'</td><td>'+nombre+'</td><td>'+precio+'</td><td>'+cantidad2+'</td></tr>';           
+    }
+    
+}
+
+</script>
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Coca cola', 'Pepsi', 'Otro'],
+        datasets: [{
+            label: 'Total de tus productos:',
+            data: [10,55,8],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+</script>
+
+
+
+</html>
