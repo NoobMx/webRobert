@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQUERY</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Bton</th>
+        </tr>
+        <tr>
+            <td>Carro</td>
+            <td>$500</td>
+            <td><input type="number" name="Ca1" id="cantidad" value="1"></td>
+            <td><button>Agregar</button></td>
+        </tr>
+        <tr>
+            <td>Barco</td>
+            <td>$1300</td>
+            <td><input type="number" name="Ca2" id="cantidad1" value="1"></td>
+            <td><button>Agregar</button></td>
+        </tr>
+        
+    </table>
+    
+</body>
+<script src="jquery.min.js"></script>
+<script>
+    var cantidade1= $("#cantidad").val();
+    console.log(cantidade1);
+</script>
+</html>

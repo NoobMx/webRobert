@@ -38,24 +38,26 @@
             <td>1</td>
             <td>Coca Cola</td>
             <td>10</td>
-            <td><input type="number" name="" id="txt" class="valores"> </td> 
+            <td><input type="number" name="" id="txt" class="valores" onchange="actualizargrafica()" value="1"> </td> 
             <td><button producto-id="1" nombre="Coca Cola" precio="10"   onclick="agregarProducto(this)">Agregar</button></td>            
         </tr>
         <tr>
             <td>2</td>
             <td>Pepsi</td>
             <td>5</td>
-            <td><input type="number" name="" id="txt1" class="valores"> </td>
+            <td><input type="number" name="" id="txt1" class="valores" onchange="actualizargrafica()" value="1"> </td>
             <td><button producto-id="2" nombre="Pepsi" precio="5"  onclick="agregarProducto(this)">Agregar</button></td>            
         </tr>
         <tr>
             <td>3</td>
             <td>Otro</td>
             <td>2</td>
-            <td ><input type="number" name="" id="txt2" class="valores"> </td>
+            <td ><input type="number" name="" id="txt2" class="valores" onchange="actualizargrafica()" value="1"> </td>
+            
             <td><button producto-id="3" nombre="Otro" precio="2"  onclick="agregarProducto(this)">Agregar</button></td>            
         </tr>
     </table>
+
     
     <!-- /Tabla de productos-->
 
@@ -82,17 +84,16 @@
     
 </body>
 <script>
-var valores=new Array();
-console.log(valores);
 function agregarProducto(producto){
+    
     var nombre = producto.getAttribute('nombre');
     var precio = producto.getAttribute('precio');
-    var cantidad = document.getElementById('txt').value;
-    valores.push(cantidad);
-    var cantidad1 = document.getElementById('txt1').value;
-    valores.push(cantidad1);
-    var cantidad2 = document.getElementById('txt2').value;
-    valores.push(cantidad2);
+    let cantidad = document.getElementById('txt').value;
+   
+    let cantidad1 = document.getElementById('txt1').value;
+    
+    let cantidad2 = document.getElementById('txt2').value;
+    
     var id = producto.getAttribute('producto-id');
 
     
@@ -100,26 +101,37 @@ function agregarProducto(producto){
         document.getElementById('carrito').innerHTML += '<tr><td>'+id+'</td><td>'+nombre+'</td><td>'+precio+'</td><td>'+cantidad+'</td></tr>';           
     }
     else if (producto.getAttribute('producto-id')==2) {
-        document.getElementById('carrito').innerHTML += '<tr><td>'+id+'</td><td>'+nombre+'</td><td>'+precio+'</td><td>'+cantidad1+'</td></tr>';           
+        document.getElementById('carrito').innerHTML += '<tr><td>'+id+'</td><td>'+nombre+'</td><td>'+precio+'</td><td>'+cantidad1+'</td></tr>';
 
     }
     else if (producto.getAttribute('producto-id')==3) {
-        document.getElementById('carrito').innerHTML += '<tr><td>'+id+'</td><td>'+nombre+'</td><td>'+precio+'</td><td>'+cantidad2+'</td></tr>';           
+        document.getElementById('carrito').innerHTML += '<tr><td>'+id+'</td><td>'+nombre+'</td><td>'+precio+'</td><td>'+cantidad2+'</td></tr>';
     }
+    
+   
     
 }
 
 </script>
+
+
+
 <canvas id="myChart" width="400" height="400"></canvas>
 <script>
+var val1=document.getElementById('txt');
+var val2=document.getElementById('txt1');
+var val3=document.getElementById('txt2');
+console.log(val1);
+
+
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ['Coca cola', 'Pepsi', 'Otro'],
+        labels: ['CocaCola','Pepsi','Otro'],
         datasets: [{
             label: 'Total de tus productos:',
-            data: [10,55,8],
+            data: [val1.value,val2.value,val3.value],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -147,6 +159,12 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+
+function actualizargrafica(){
+    var actualizardatos=[val1.value,val2.value,val3.value];
+    myChart.data.datasets[0].data=actualizardatos;
+    myChart.update();
+}
 
 </script>
 
